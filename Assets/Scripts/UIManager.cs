@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     private Image health = null;
     private Transform pTrans = null;
     private float hp = 1.0f;
+    public Camera camera = null;
+    private float speed = 20.0f;
     void Awake() {
         DontDestroyOnLoad(gameObject);
     }
@@ -29,7 +31,16 @@ public class UIManager : MonoBehaviour
             if(hp>0.5f && health.color == Color.red)
                 health.color = Color.green;
         }
+    }
+
+    void LateUpdate() {
+        if(camera!=null){
+            Vector3 rotation = camera.transform.eulerAngles;
+            rotation.y += Input.GetAxis("CamMove") * speed * Time.deltaTime;
+            camera.transform.eulerAngles = rotation;
+        }
         
+     
     }
 
     public void LoadFirstLevel(){
@@ -48,6 +59,7 @@ public class UIManager : MonoBehaviour
             button = GameObject.FindWithTag("QuitButton").GetComponent<Button>();
             health = GameObject.FindWithTag("PlayerHealthBar").GetComponent<Image>();
             pTrans = GameObject.FindWithTag("Player").transform;
+            camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         }
 
         if(button!=null)

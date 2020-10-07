@@ -3071,6 +3071,7 @@ GameObject:
   - component: {fileID: 1780957088}
   - component: {fileID: 1780957087}
   - component: {fileID: 1780957086}
+  - component: {fileID: 1780957089}
   m_Layer: 5
   m_Name: PlayerCanvas
   m_TagString: Untagged
@@ -3158,6 +3159,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1780957089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780957084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad26bfdc8f6cea44b8771ab99c719b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 1647411454}
 --- !u!1001 &1780968538
 PrefabInstance:
   m_ObjectHideFlags: 0
