@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    private Image health = null;
+    private Transform pTrans = null;
+    private float hp = 1.0f;
     void Awake() {
         DontDestroyOnLoad(gameObject);
     }
@@ -18,6 +21,14 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(pTrans!=null){
+            hp = Mathf.Clamp(((5.0f - Mathf.Abs((float) pTrans.position.x))/5.0f), 0.0f, 1.0f);
+            health.fillAmount = hp;
+            if(hp<0.5f && health.color == Color.green)
+                health.color = Color.red;
+            if(hp>0.5f && health.color == Color.red)
+                health.color = Color.green;
+        }
         
     }
 
@@ -32,8 +43,12 @@ public class UIManager : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode){
         Button button = null;
-        if(scene.buildIndex == 1)
+
+        if(scene.buildIndex == 1){
             button = GameObject.FindWithTag("QuitButton").GetComponent<Button>();
+            health = GameObject.FindWithTag("PlayerHealthBar").GetComponent<Image>();
+            pTrans = GameObject.FindWithTag("Player").transform;
+        }
 
         if(button!=null)
             button.onClick.AddListener(QuitGame);
